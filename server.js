@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 
 const app = express();
 const PORT = process.env.PORT || 5555;
