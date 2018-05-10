@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const BookSchema = require('./book');
+const bookSchema = require('./book.js').schema;
 
 var librarySchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -9,7 +9,7 @@ var librarySchema = new mongoose.Schema({
       shelves: [
         {
           name: String,
-          books: [BookSchema]
+          books: [bookSchema]
         }
       ]
     }
