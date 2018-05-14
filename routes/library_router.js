@@ -18,19 +18,19 @@ libraryRouter.put('/library/:id', bodyParser, (req, res) => {
   let libraryData = req.body;
   delete libraryData._id;
 
-  Library.update({ _id: req.params.id, creatorId: req.user._id }, libraryData, (err, data) => {
+  Library.update({ _id: req.params.id}, libraryData, (err, data) => {
     if (err) return handleErr(err, res, 401, 'error updating library');
     if (!data.ok) return handleErr(null, res, 401, 'error updating library');
     if (!data.nModified) return handleErr(null, res, 404, 'library not found');
-    res.status(200).json({ msg: 'library updated by creator' });
+    res.status(200).json({ msg: 'library updated' });
   });
 });
 
 libraryRouter.delete('/library/:id', (req, res) => {
-  Library.findOneAndRemove({ _id: req.params.id, creatorId: req.user._id }, (err, doc) => {
+  Library.findOneAndRemove({ _id: req.params.id}, (err, doc) => {
     if (err) return handleErr(err, res, 401, 'error deleting library');
     if (!doc) return handleErr(null, res, 404, 'library not found');
-    res.status(200).json({ msg: 'library deleted by creator' });
+    res.status(200).json({ msg: 'library deleted' });
   });
 });
 
