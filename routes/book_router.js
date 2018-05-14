@@ -22,7 +22,7 @@ bookRouter.put('/book/:id', bodyParser, (req, res) => {
     if (err) return handleErr(err, res, 401, 'error updating book');
     if (!data.ok) return handleErr(null, res, 401, 'error updating book');
     if (!data.nModified) return handleErr(null, res, 404, 'book not found');
-    res.status(200).json({ msg: 'book updated by creator' });
+    res.status(200).json({ msg: 'book updated' });
   });
 });
 
@@ -30,7 +30,7 @@ bookRouter.delete('/book/:id', (req, res) => {
   Book.findOneAndRemove({ _id: req.params.id}, (err, doc) => {
     if (err) return handleErr(err, res, 401, 'error deleting book');
     if (!doc) return handleErr(null, res, 404, 'book not found');
-    res.status(200).json({ msg: 'book deleted by creator' });
+    res.status(200).json({ msg: 'book deleted' });
   });
 });
 
